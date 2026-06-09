@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import {
   Globe,
   ShoppingCart,
@@ -25,13 +26,52 @@ import {
   Sparkles,
 } from 'lucide-react'
 
+function LanguageToggle() {
+  const { i18n } = useTranslation()
+  const currentLang = i18n.language?.startsWith('ar') ? 'ar' : 'en'
+
+  return (
+    <div
+      className="flex items-center rounded-lg border border-slate-200 overflow-hidden text-xs font-semibold"
+      role="group"
+      aria-label="Language"
+    >
+      <button
+        type="button"
+        onClick={() => i18n.changeLanguage('en')}
+        className={`px-2.5 py-1.5 transition-colors ${
+          currentLang === 'en'
+            ? 'bg-navy text-white'
+            : 'text-slate hover:text-navy hover:bg-ice'
+        }`}
+        aria-pressed={currentLang === 'en'}
+      >
+        EN
+      </button>
+      <button
+        type="button"
+        onClick={() => i18n.changeLanguage('ar')}
+        className={`px-2.5 py-1.5 transition-colors ${
+          currentLang === 'ar'
+            ? 'bg-navy text-white'
+            : 'text-slate hover:text-navy hover:bg-ice'
+        }`}
+        aria-pressed={currentLang === 'ar'}
+      >
+        AR
+      </button>
+    </div>
+  )
+}
+
 function Navbar() {
   const [open, setOpen] = useState(false)
+  const { t } = useTranslation()
   const links = [
-    { label: 'Services', href: '#services' },
-    { label: 'WhatsApp', href: '#whatsapp' },
-    { label: 'Plans', href: '#plans' },
-    { label: 'Contact', href: '#contact' },
+    { label: t('navbar.services'), href: '#services' },
+    { label: t('navbar.whatsapp'), href: '#whatsapp' },
+    { label: t('navbar.plans'), href: '#plans' },
+    { label: t('navbar.contact'), href: '#contact' },
   ]
 
   return (
@@ -56,22 +96,26 @@ function Navbar() {
               {l.label}
             </a>
           ))}
+          <LanguageToggle />
           <a
             href="#contact"
             className="text-sm font-medium bg-navy text-white px-5 py-2 rounded-lg hover:bg-navy-light transition-colors"
           >
-            Get a Quote
+            {t('navbar.getQuote')}
           </a>
         </div>
 
-        <button
-          type="button"
-          className="md:hidden text-navy"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <LanguageToggle />
+          <button
+            type="button"
+            className="text-navy"
+            onClick={() => setOpen(!open)}
+            aria-label={t('navbar.toggleMenu')}
+          >
+            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -91,7 +135,7 @@ function Navbar() {
             onClick={() => setOpen(false)}
             className="block text-sm font-medium bg-navy text-white px-5 py-2.5 rounded-lg text-center"
           >
-            Get a Quote
+            {t('navbar.getQuote')}
           </a>
         </div>
       )}

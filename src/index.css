@@ -23,4 +23,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  html[dir='rtl'] body {
+    font-family: 'Noto Sans Arabic', var(--font-sans);
+  }
 }

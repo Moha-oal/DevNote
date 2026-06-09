@@ -1,0 +1,133 @@
+{
+  "navbar": {
+    "services": "Services",
+    "whatsapp": "WhatsApp",
+    "plans": "Plans",
+    "contact": "Contact",
+    "getQuote": "Get a Quote",
+    "toggleMenu": "Toggle menu"
+  },
+  "hero": {
+    "badge": "Secure by Design. Built for Performance.",
+    "title": "Bespoke Web Development",
+    "titleHighlight": "Infrastructure",
+    "titlePrefix": "& Secure Digital",
+    "description": "We build fast, secure, and custom-tailored web experiences that elevate your business. No templates. No shortcuts. Just clean code and premium craftsmanship.",
+    "exploreServices": "Explore Services",
+    "getQuote": "Get a Quote",
+    "isoSecurity": "ISO-Grade Security",
+    "uptime": "99.9% Uptime",
+    "customBuilt": "Custom Built"
+  },
+  "services": {
+    "eyebrow": "What We Build",
+    "title": "Services & Website Types",
+    "description": "Every project is built from scratch with meticulous attention to security, performance, and design.",
+    "items": {
+      "corporate": {
+        "title": "Corporate & Business Websites",
+        "description": "High-end landing pages and corporate portfolios designed to elevate your brand presence and build trust with stakeholders.",
+        "tags": ["Landing Pages", "Portfolios", "Brand Identity"]
+      },
+      "ecommerce": {
+        "title": "E-Commerce Platforms",
+        "description": "Seamless, fast, and conversion-optimized digital storefronts with secure payment gateways and intuitive user journeys.",
+        "tags": ["Online Stores", "Payment Integration", "Inventory"]
+      },
+      "custom": {
+        "title": "Custom Web Applications",
+        "description": "Tailored internal tools, SaaS MVPs, and secure database-driven platforms built to your exact specifications.",
+        "tags": ["SaaS", "Dashboards", "API-Driven"]
+      },
+      "security": {
+        "title": "Cyber-Secure Design",
+        "description": "Clean code, optimal performance, and robust security testing baked into every project from day one. No afterthoughts.",
+        "tags": ["Penetration Testing", "SSL/TLS", "OWASP"]
+      }
+    }
+  },
+  "whatsapp": {
+    "eyebrow": "WhatsApp Integration",
+    "title": "Advanced WhatsApp Business Automation",
+    "description": "Transform your customer communication with seamless WhatsApp Business integrations. Automate responses, capture leads, and keep your team informed in real time.",
+    "features": {
+      "api": {
+        "title": "API & CRM Automation",
+        "description": "Integrate customer web forms directly with WhatsApp Business API to instantly alert your sales team the moment a lead comes in."
+      },
+      "chatbot": {
+        "title": "Automated Chatbots & Workflows",
+        "description": "Custom interactive auto-responders that qualify leads, answer FAQs, and engage customers 24/7 without manual intervention."
+      },
+      "notifications": {
+        "title": "Notification Systems",
+        "description": "Automated WhatsApp alerts for orders, bookings, and customer updates triggered directly from your website in real time."
+      }
+    },
+    "chat": {
+      "botWelcome": "Hi! Welcome to DevNote. I'm here to help you get started. What are you looking for?",
+      "userMessage": "I need a custom e-commerce site for my business.",
+      "botReply": "Great choice! I'll connect you with our team right away. A specialist will reach out within 5 minutes.",
+      "placeholder": "Type a message..."
+    }
+  },
+  "plans": {
+    "eyebrow": "Post-Launch Support",
+    "title": "Maintenance & Subscription Plans",
+    "description": "Your website deserves ongoing care. Choose a plan that keeps your digital presence secure, fast, and up to date.",
+    "essential": {
+      "title": "Essential Care",
+      "subtitle": "Foundation-level protection",
+      "features": [
+        "Ultra-secure cloud hosting",
+        "Basic monthly backups",
+        "Core security updates & patches",
+        "SSL certificate management",
+        "Uptime monitoring"
+      ],
+      "cta": "Get Started"
+    },
+    "premium": {
+      "title": "Premium Growth",
+      "subtitle": "Complete peace of mind",
+      "badge": "Recommended",
+      "features": [
+        "Everything in Essential Care",
+        "Regular automated full backups",
+        "Advanced malware monitoring",
+        "Dedicated priority support hours",
+        "Minor content updates included",
+        "Monthly performance & security audits"
+      ],
+      "cta": "Get Started"
+    }
+  },
+  "contact": {
+    "eyebrow": "Let's Talk",
+    "title": "Start Your Project",
+    "description": "Tell us about your vision. We'll get back to you within 24 hours with a tailored proposal — no obligations, no pressure.",
+    "location": "Remote-first, worldwide",
+    "form": {
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "John Doe",
+      "businessType": "Business Type",
+      "businessTypePlaceholder": "E-Commerce, Agency, SaaS...",
+      "websiteType": "Required Website Type",
+      "websiteTypePlaceholder": "Select a type...",
+      "websiteTypes": {
+        "corporate": "Corporate & Business Website",
+        "ecommerce": "E-Commerce Platform",
+        "custom": "Custom Web Application",
+        "saas": "SaaS / Dashboard",
+        "other": "Other"
+      },
+      "overview": "Project Overview",
+      "overviewPlaceholder": "Describe your project goals, timeline, and any specific requirements...",
+      "submit": "Request a Consultation",
+      "submitted": "Consultation Request Sent!"
+    }
+  },
+  "footer": {
+    "copyright": "© {{year}} DevNote. All rights reserved. Built with precision."
+  }
+}
