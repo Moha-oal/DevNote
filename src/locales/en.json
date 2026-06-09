@@ -81,7 +81,7 @@
     "description": "Your website deserves ongoing care. Choose a plan that keeps your digital presence secure, fast, and up to date.",
     "basic": {
       "title": "Basic Care",
-      "price": "RM 150/month",
+      "price": "$20/month",
       "features": [
         "Fix any website bugs or errors",
         "Monthly security scan",
@@ -93,7 +93,7 @@
     },
     "pro": {
       "title": "Pro Care",
-      "price": "RM 300/month",
+      "price": "$80/month",
       "badge": "Recommended",
       "features": [
         "Everything in Basic Care",
