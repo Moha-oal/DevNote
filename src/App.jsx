@@ -27,14 +27,14 @@ import {
 } from 'lucide-react'
 
 function LanguageToggle() {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const currentLang = i18n.language?.startsWith('ar') ? 'ar' : 'en'
 
   return (
     <div
       className="flex items-center rounded-lg border border-slate-200 overflow-hidden text-xs font-semibold"
       role="group"
-      aria-label="Language"
+      aria-label={t('common.language')}
     >
       <button
         type="button"
@@ -144,6 +144,8 @@ function Navbar() {
 }
 
 function Hero() {
+  const { t } = useTranslation()
+
   return (
     <section className="pt-32 pb-20 md:pt-40 md:pb-28 bg-white relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(37,99,235,0.05)_0%,_transparent_70%)]" />
@@ -152,24 +154,22 @@ function Hero() {
           <div className="inline-flex items-center gap-2 bg-ice border border-slate-200 rounded-full px-4 py-1.5 mb-8">
             <Lock className="w-3.5 h-3.5 text-royal" />
             <span className="text-xs font-medium text-slate">
-              Secure by Design. Built for Performance.
+              {t('hero.badge')}
             </span>
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-navy leading-tight tracking-tight">
-            Bespoke Web Development
+            {t('hero.title')}
             <span className="block mt-2">
-              &amp; Secure Digital{' '}
+              {t('hero.titlePrefix')}{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-royal to-cyan">
-                Infrastructure
+                {t('hero.titleHighlight')}
               </span>
             </span>
           </h1>
 
           <p className="mt-6 text-lg md:text-xl text-slate max-w-2xl mx-auto leading-relaxed">
-            We build fast, secure, and custom-tailored web experiences that
-            elevate your business. No templates. No shortcuts. Just clean code
-            and premium craftsmanship.
+            {t('hero.description')}
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -177,29 +177,29 @@ function Hero() {
               href="#services"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-navy text-white px-8 py-3.5 rounded-xl font-medium hover:bg-navy-light transition-all hover:shadow-lg hover:shadow-navy/20"
             >
-              Explore Services
-              <ChevronRight className="w-4 h-4" />
+              {t('hero.exploreServices')}
+              <ChevronRight className="w-4 h-4 rtl:rotate-180" />
             </a>
             <a
               href="#contact"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border-2 border-navy text-navy px-8 py-3.5 rounded-xl font-medium hover:bg-navy hover:text-white transition-all"
             >
-              Get a Quote
+              {t('hero.getQuote')}
             </a>
           </div>
 
           <div className="mt-16 flex items-center justify-center gap-8 md:gap-12 text-sm text-slate-light">
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-royal" />
-              <span>ISO-Grade Security</span>
+              <span>{t('hero.isoSecurity')}</span>
             </div>
             <div className="hidden sm:flex items-center gap-2">
               <Zap className="w-4 h-4 text-royal" />
-              <span>99.9% Uptime</span>
+              <span>{t('hero.uptime')}</span>
             </div>
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-royal" />
-              <span>Custom Built</span>
+              <span>{t('hero.customBuilt')}</span>
             </div>
           </div>
         </div>
@@ -208,138 +208,110 @@ function Hero() {
   )
 }
 
-const services = [
-  {
-    icon: Globe,
-    title: 'Corporate & Business Websites',
-    description:
-      'High-end landing pages and corporate portfolios designed to elevate your brand presence and build trust with stakeholders.',
-    tags: ['Landing Pages', 'Portfolios', 'Brand Identity'],
-  },
-  {
-    icon: ShoppingCart,
-    title: 'E-Commerce Platforms',
-    description:
-      'Seamless, fast, and conversion-optimized digital storefronts with secure payment gateways and intuitive user journeys.',
-    tags: ['Online Stores', 'Payment Integration', 'Inventory'],
-  },
-  {
-    icon: Database,
-    title: 'Custom Web Applications',
-    description:
-      'Tailored internal tools, SaaS MVPs, and secure database-driven platforms built to your exact specifications.',
-    tags: ['SaaS', 'Dashboards', 'API-Driven'],
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Cyber-Secure Design',
-    description:
-      'Clean code, optimal performance, and robust security testing baked into every project from day one. No afterthoughts.',
-    tags: ['Penetration Testing', 'SSL/TLS', 'OWASP'],
-  },
+const serviceKeys = [
+  { key: 'corporate', icon: Globe },
+  { key: 'ecommerce', icon: ShoppingCart },
+  { key: 'custom', icon: Database },
+  { key: 'security', icon: ShieldCheck },
 ]
 
 function Services() {
+  const { t } = useTranslation()
+
   return (
     <section id="services" className="py-20 md:py-28 bg-ice">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-xs font-semibold tracking-widest uppercase text-royal">
-            What We Build
+            {t('services.eyebrow')}
           </span>
           <h2 className="mt-4 text-3xl md:text-4xl font-bold text-navy tracking-tight">
-            Services & Website Types
+            {t('services.title')}
           </h2>
           <p className="mt-4 text-slate text-lg">
-            Every project is built from scratch with meticulous attention to
-            security, performance, and design.
+            {t('services.description')}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {services.map((s) => (
-            <div
-              key={s.title}
-              className="group bg-white border border-slate-200/60 rounded-2xl p-8 hover:shadow-xl hover:shadow-slate-200/50 hover:border-royal/20 transition-all duration-300"
-            >
-              <div className="w-12 h-12 bg-ice rounded-xl flex items-center justify-center mb-6 group-hover:bg-royal/10 transition-colors">
-                <s.icon className="w-6 h-6 text-royal" />
+          {serviceKeys.map(({ key, icon: Icon }) => {
+            const tags = t(`services.items.${key}.tags`, { returnObjects: true })
+
+            return (
+              <div
+                key={key}
+                className="group bg-white border border-slate-200/60 rounded-2xl p-8 hover:shadow-xl hover:shadow-slate-200/50 hover:border-royal/20 transition-all duration-300"
+              >
+                <div className="w-12 h-12 bg-ice rounded-xl flex items-center justify-center mb-6 group-hover:bg-royal/10 transition-colors">
+                  <Icon className="w-6 h-6 text-royal" />
+                </div>
+                <h3 className="text-xl font-semibold text-navy mb-3">
+                  {t(`services.items.${key}.title`)}
+                </h3>
+                <p className="text-slate leading-relaxed mb-5">
+                  {t(`services.items.${key}.description`)}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs font-medium bg-ice text-slate px-3 py-1 rounded-full border border-slate-200/60"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <h3 className="text-xl font-semibold text-navy mb-3">
-                {s.title}
-              </h3>
-              <p className="text-slate leading-relaxed mb-5">
-                {s.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {s.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="text-xs font-medium bg-ice text-slate px-3 py-1 rounded-full border border-slate-200/60"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
   )
 }
 
-const whatsappFeatures = [
-  {
-    icon: MessageCircle,
-    title: 'API & CRM Automation',
-    description:
-      'Integrate customer web forms directly with WhatsApp Business API to instantly alert your sales team the moment a lead comes in.',
-  },
-  {
-    icon: Bot,
-    title: 'Automated Chatbots & Workflows',
-    description:
-      'Custom interactive auto-responders that qualify leads, answer FAQs, and engage customers 24/7 without manual intervention.',
-  },
-  {
-    icon: Bell,
-    title: 'Notification Systems',
-    description:
-      'Automated WhatsApp alerts for orders, bookings, and customer updates triggered directly from your website in real time.',
-  },
+const whatsappFeatureKeys = [
+  { key: 'api', icon: MessageCircle },
+  { key: 'chatbot', icon: Bot },
+  { key: 'notifications', icon: Bell },
 ]
 
 function WhatsApp() {
+  const { t } = useTranslation()
+
+  const chatMessages = [
+    { from: 'bot', text: t('whatsapp.chat.botWelcome') },
+    { from: 'user', text: t('whatsapp.chat.userMessage') },
+    { from: 'bot', text: t('whatsapp.chat.botReply') },
+  ]
+
   return (
     <section id="whatsapp" className="py-20 md:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <span className="text-xs font-semibold tracking-widest uppercase text-emerald-600">
-              WhatsApp Integration
+              {t('whatsapp.eyebrow')}
             </span>
             <h2 className="mt-4 text-3xl md:text-4xl font-bold text-navy tracking-tight">
-              Advanced WhatsApp Business Automation
+              {t('whatsapp.title')}
             </h2>
             <p className="mt-4 text-slate text-lg leading-relaxed">
-              Transform your customer communication with seamless WhatsApp
-              Business integrations. Automate responses, capture leads, and
-              keep your team informed in real time.
+              {t('whatsapp.description')}
             </p>
 
             <div className="mt-10 space-y-8">
-              {whatsappFeatures.map((f) => (
-                <div key={f.title} className="flex gap-4">
+              {whatsappFeatureKeys.map(({ key, icon: Icon }) => (
+                <div key={key} className="flex gap-4">
                   <div className="shrink-0 w-11 h-11 bg-emerald-50 rounded-xl flex items-center justify-center">
-                    <f.icon className="w-5 h-5 text-emerald-600" />
+                    <Icon className="w-5 h-5 text-emerald-600" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-navy mb-1">
-                      {f.title}
+                      {t(`whatsapp.features.${key}.title`)}
                     </h3>
                     <p className="text-slate leading-relaxed text-sm">
-                      {f.description}
+                      {t(`whatsapp.features.${key}.description`)}
                     </p>
                   </div>
                 </div>
@@ -350,20 +322,7 @@ function WhatsApp() {
           <div className="relative">
             <div className="bg-gradient-to-br from-emerald-50 to-cyan/5 rounded-3xl p-8 md:p-12 border border-emerald-100">
               <div className="space-y-4">
-                {[
-                  {
-                    from: 'bot',
-                    text: "Hi! Welcome to DevNote. I'm here to help you get started. What are you looking for?",
-                  },
-                  {
-                    from: 'user',
-                    text: "I need a custom e-commerce site for my business.",
-                  },
-                  {
-                    from: 'bot',
-                    text: "Great choice! I'll connect you with our team right away. A specialist will reach out within 5 minutes.",
-                  },
-                ].map((msg, i) => (
+                {chatMessages.map((msg, i) => (
                   <div
                     key={i}
                     className={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}
@@ -371,8 +330,8 @@ function WhatsApp() {
                     <div
                       className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm ${
                         msg.from === 'user'
-                          ? 'bg-emerald-500 text-white rounded-br-md'
-                          : 'bg-white text-navy shadow-sm border border-slate-100 rounded-bl-md'
+                          ? 'bg-emerald-500 text-white rounded-br-md rtl:rounded-br-2xl rtl:rounded-bl-md'
+                          : 'bg-white text-navy shadow-sm border border-slate-100 rounded-bl-md rtl:rounded-bl-2xl rtl:rounded-br-md'
                       }`}
                     >
                       {msg.text}
@@ -382,7 +341,7 @@ function WhatsApp() {
               </div>
               <div className="mt-6 flex items-center gap-3">
                 <div className="flex-1 bg-white rounded-full px-4 py-2.5 text-sm text-slate-light border border-slate-200">
-                  Type a message...
+                  {t('whatsapp.chat.placeholder')}
                 </div>
                 <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center">
                   <Send className="w-4 h-4 text-white" />
@@ -397,24 +356,26 @@ function WhatsApp() {
 }
 
 function Plans() {
+  const { t } = useTranslation()
+  const essentialFeatures = t('plans.essential.features', { returnObjects: true })
+  const premiumFeatures = t('plans.premium.features', { returnObjects: true })
+
   return (
     <section id="plans" className="py-20 md:py-28 bg-ice">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-xs font-semibold tracking-widest uppercase text-royal">
-            Post-Launch Support
+            {t('plans.eyebrow')}
           </span>
           <h2 className="mt-4 text-3xl md:text-4xl font-bold text-navy tracking-tight">
-            Maintenance & Subscription Plans
+            {t('plans.title')}
           </h2>
           <p className="mt-4 text-slate text-lg">
-            Your website deserves ongoing care. Choose a plan that keeps your
-            digital presence secure, fast, and up to date.
+            {t('plans.description')}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {/* Essential */}
           <div className="bg-white border border-slate-200/60 rounded-2xl p-8 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-11 h-11 bg-ice rounded-xl flex items-center justify-center">
@@ -422,21 +383,15 @@ function Plans() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-navy">
-                  Essential Care
+                  {t('plans.essential.title')}
                 </h3>
                 <span className="text-xs text-slate">
-                  Foundation-level protection
+                  {t('plans.essential.subtitle')}
                 </span>
               </div>
             </div>
             <ul className="space-y-3 mb-8">
-              {[
-                'Ultra-secure cloud hosting',
-                'Basic monthly backups',
-                'Core security updates & patches',
-                'SSL certificate management',
-                'Uptime monitoring',
-              ].map((item) => (
+              {essentialFeatures.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm">
                   <Check className="w-4 h-4 text-royal shrink-0 mt-0.5" />
                   <span className="text-slate">{item}</span>
@@ -447,15 +402,14 @@ function Plans() {
               href="#contact"
               className="block w-full text-center border-2 border-navy text-navy py-3 rounded-xl font-medium hover:bg-navy hover:text-white transition-all text-sm"
             >
-              Get Started
+              {t('plans.essential.cta')}
             </a>
           </div>
 
-          {/* Premium */}
           <div className="relative bg-navy rounded-2xl p-8 text-white shadow-2xl shadow-navy/20">
-            <div className="absolute -top-3 right-8">
+            <div className="absolute -top-3 end-8">
               <span className="bg-gradient-to-r from-royal to-cyan text-white text-xs font-bold px-4 py-1 rounded-full">
-                Recommended
+                {t('plans.premium.badge')}
               </span>
             </div>
             <div className="flex items-center gap-3 mb-6">
@@ -463,21 +417,14 @@ function Plans() {
                 <HeartPulse className="w-5 h-5 text-cyan-light" />
               </div>
               <div>
-                <h3 className="text-lg font-semibold">Premium Growth</h3>
+                <h3 className="text-lg font-semibold">{t('plans.premium.title')}</h3>
                 <span className="text-xs text-slate-light">
-                  Complete peace of mind
+                  {t('plans.premium.subtitle')}
                 </span>
               </div>
             </div>
             <ul className="space-y-3 mb-8">
-              {[
-                'Everything in Essential Care',
-                'Regular automated full backups',
-                'Advanced malware monitoring',
-                'Dedicated priority support hours',
-                'Minor content updates included',
-                'Monthly performance & security audits',
-              ].map((item) => (
+              {premiumFeatures.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm">
                   <Check className="w-4 h-4 text-cyan-light shrink-0 mt-0.5" />
                   <span className="text-slate-light">{item}</span>
@@ -488,7 +435,7 @@ function Plans() {
               href="#contact"
               className="block w-full text-center bg-gradient-to-r from-royal to-cyan text-white py-3 rounded-xl font-medium hover:opacity-90 transition-all text-sm"
             >
-              Get Started
+              {t('plans.premium.cta')}
             </a>
           </div>
         </div>
@@ -497,7 +444,10 @@ function Plans() {
   )
 }
 
+const websiteTypeOptions = ['corporate', 'ecommerce', 'custom', 'saas', 'other']
+
 function Contact() {
+  const { t } = useTranslation()
   const [formData, setFormData] = useState({
     name: '',
     business: '',
@@ -519,14 +469,13 @@ function Contact() {
         <div className="grid lg:grid-cols-2 gap-16">
           <div>
             <span className="text-xs font-semibold tracking-widest uppercase text-royal">
-              Let's Talk
+              {t('contact.eyebrow')}
             </span>
             <h2 className="mt-4 text-3xl md:text-4xl font-bold text-navy tracking-tight">
-              Start Your Project
+              {t('contact.title')}
             </h2>
             <p className="mt-4 text-slate text-lg leading-relaxed">
-              Tell us about your vision. We'll get back to you within 24 hours
-              with a tailored proposal — no obligations, no pressure.
+              {t('contact.description')}
             </p>
 
             <div className="mt-10 space-y-5">
@@ -552,7 +501,7 @@ function Contact() {
                 <div className="w-11 h-11 bg-ice rounded-xl flex items-center justify-center">
                   <MapPin className="w-5 h-5 text-royal" />
                 </div>
-                <span className="text-sm">Remote-first, worldwide</span>
+                <span className="text-sm">{t('contact.location')}</span>
               </div>
             </div>
 
@@ -560,7 +509,7 @@ function Contact() {
               <a
                 href="#"
                 className="w-10 h-10 bg-ice rounded-xl flex items-center justify-center hover:bg-royal/10 transition-colors"
-                aria-label="Instagram"
+                aria-label={t('common.instagram')}
               >
                 <svg className="w-4 h-4 text-royal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
               </a>
@@ -570,7 +519,7 @@ function Contact() {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="block text-sm font-medium text-navy mb-2">
-                Full Name
+                {t('contact.form.fullName')}
               </label>
               <input
                 type="text"
@@ -580,12 +529,12 @@ function Contact() {
                   setFormData({ ...formData, name: e.target.value })
                 }
                 className="w-full bg-ice border border-slate-200 rounded-xl px-4 py-3 text-sm text-navy placeholder:text-slate-light focus:outline-none focus:ring-2 focus:ring-royal/30 focus:border-royal transition-all"
-                placeholder="John Doe"
+                placeholder={t('contact.form.fullNamePlaceholder')}
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-navy mb-2">
-                Business Type
+                {t('contact.form.businessType')}
               </label>
               <input
                 type="text"
@@ -595,12 +544,12 @@ function Contact() {
                   setFormData({ ...formData, business: e.target.value })
                 }
                 className="w-full bg-ice border border-slate-200 rounded-xl px-4 py-3 text-sm text-navy placeholder:text-slate-light focus:outline-none focus:ring-2 focus:ring-royal/30 focus:border-royal transition-all"
-                placeholder="E-Commerce, Agency, SaaS..."
+                placeholder={t('contact.form.businessTypePlaceholder')}
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-navy mb-2">
-                Required Website Type
+                {t('contact.form.websiteType')}
               </label>
               <select
                 required
@@ -610,17 +559,17 @@ function Contact() {
                 }
                 className="w-full bg-ice border border-slate-200 rounded-xl px-4 py-3 text-sm text-navy focus:outline-none focus:ring-2 focus:ring-royal/30 focus:border-royal transition-all appearance-none"
               >
-                <option value="">Select a type...</option>
-                <option>Corporate & Business Website</option>
-                <option>E-Commerce Platform</option>
-                <option>Custom Web Application</option>
-                <option>SaaS / Dashboard</option>
-                <option>Other</option>
+                <option value="">{t('contact.form.websiteTypePlaceholder')}</option>
+                {websiteTypeOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {t(`contact.form.websiteTypes.${option}`)}
+                  </option>
+                ))}
               </select>
             </div>
             <div>
               <label className="block text-sm font-medium text-navy mb-2">
-                Project Overview
+                {t('contact.form.overview')}
               </label>
               <textarea
                 required
@@ -630,7 +579,7 @@ function Contact() {
                   setFormData({ ...formData, overview: e.target.value })
                 }
                 className="w-full bg-ice border border-slate-200 rounded-xl px-4 py-3 text-sm text-navy placeholder:text-slate-light focus:outline-none focus:ring-2 focus:ring-royal/30 focus:border-royal transition-all resize-none"
-                placeholder="Describe your project goals, timeline, and any specific requirements..."
+                placeholder={t('contact.form.overviewPlaceholder')}
               />
             </div>
             <button
@@ -638,11 +587,11 @@ function Contact() {
               className="w-full bg-navy text-white py-3.5 rounded-xl font-medium hover:bg-navy-light transition-all hover:shadow-lg hover:shadow-navy/20 flex items-center justify-center gap-2 text-sm"
             >
               {submitted ? (
-                'Consultation Request Sent!'
+                t('contact.form.submitted')
               ) : (
                 <>
-                  Request a Consultation
-                  <ArrowRight className="w-4 h-4" />
+                  {t('contact.form.submit')}
+                  <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                 </>
               )}
             </button>
@@ -654,6 +603,8 @@ function Contact() {
 }
 
 function Footer() {
+  const { t } = useTranslation()
+
   return (
     <footer className="bg-navy py-12">
       <div className="max-w-7xl mx-auto px-6">
@@ -667,7 +618,7 @@ function Footer() {
             </span>
           </div>
           <p className="text-xs text-slate-light">
-            &copy; {new Date().getFullYear()} DevNote. All rights reserved. Built with precision.
+            {t('footer.copyright', { year: new Date().getFullYear() })}
           </p>
         </div>
       </div>

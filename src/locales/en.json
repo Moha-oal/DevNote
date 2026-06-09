@@ -1,4 +1,8 @@
 {
+  "common": {
+    "language": "Language",
+    "instagram": "Instagram"
+  },
   "navbar": {
     "services": "Services",
     "whatsapp": "WhatsApp",

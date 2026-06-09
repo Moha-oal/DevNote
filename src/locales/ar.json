@@ -1,4 +1,8 @@
 {
+  "common": {
+    "language": "اللغة",
+    "instagram": "إنستغرام"
+  },
   "navbar": {
     "services": "الخدمات",
     "whatsapp": "واتساب",
