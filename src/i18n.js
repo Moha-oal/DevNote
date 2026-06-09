@@ -17,6 +17,8 @@ i18n.use(initReactI18next).init({
   lng: 'en',
   fallbackLng: 'en',
   interpolation: {
+    // Safe with React: JSX auto-escapes rendered strings. Keep translations
+    // static (no user/HTML input). Do not use dangerouslySetInnerHTML with t().
     escapeValue: false,
   },
 })

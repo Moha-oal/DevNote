@@ -128,7 +128,13 @@
       "overview": "Project Overview",
       "overviewPlaceholder": "Describe your project goals, timeline, and any specific requirements...",
       "submit": "Request a Consultation",
-      "submitted": "Consultation Request Sent!"
+      "submitted": "Consultation Request Sent!",
+      "errors": {
+        "required": "This field is required.",
+        "tooShort": "Please enter more detail.",
+        "tooLong": "This field is too long.",
+        "invalid": "Please remove invalid characters."
+      }
     }
   },
   "footer": {

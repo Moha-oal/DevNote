@@ -1,5 +1,18 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import ExternalLink from './components/ExternalLink.jsx'
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  CONTACT_PHONE_DISPLAY,
+  SOCIAL_INSTAGRAM_URL,
+} from './config/site.js'
+import {
+  CONTACT_LIMITS,
+  WEBSITE_TYPE_OPTIONS,
+  sanitizeContactForm,
+  validateContactForm,
+} from './utils/validateContactForm.js'
 import {
   Globe,
   ShoppingCart,
@@ -77,7 +90,7 @@ function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/60">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 group">
+        <a href="#top" className="flex items-center gap-2 group">
           <div className="w-8 h-8 bg-navy rounded-lg flex items-center justify-center">
             <Code2 className="w-4 h-4 text-white" />
           </div>
@@ -444,8 +457,6 @@ function Plans() {
   )
 }
 
-const websiteTypeOptions = ['corporate', 'ecommerce', 'custom', 'saas', 'other']
-
 function Contact() {
   const { t } = useTranslation()
   const [formData, setFormData] = useState({
@@ -454,14 +465,29 @@ function Contact() {
     websiteType: '',
     overview: '',
   })
+  const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const validationErrors = validateContactForm(formData)
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors)
+      return
+    }
+
+    const sanitized = sanitizeContactForm(formData)
+    // Ready for a future API call — never log or render raw unsanitized input.
+    void sanitized
+
+    setErrors({})
     setSubmitted(true)
     setTimeout(() => setSubmitted(false), 4000)
     setFormData({ name: '', business: '', websiteType: '', overview: '' })
   }
+
+  const fieldError = (field) =>
+    errors[field] ? t(`contact.form.errors.${errors[field]}`) : null
 
   return (
     <section id="contact" className="py-20 md:py-28 bg-white">
@@ -480,22 +506,22 @@ function Contact() {
 
             <div className="mt-10 space-y-5">
               <a
-                href="mailto:hello@devnote.agency"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="flex items-center gap-4 text-slate hover:text-navy transition-colors group"
               >
                 <div className="w-11 h-11 bg-ice rounded-xl flex items-center justify-center group-hover:bg-royal/10 transition-colors">
                   <Mail className="w-5 h-5 text-royal" />
                 </div>
-                <span className="text-sm">hello@devnote.agency</span>
+                <span className="text-sm">{CONTACT_EMAIL}</span>
               </a>
               <a
-                href="tel:+1234567890"
+                href={`tel:${CONTACT_PHONE}`}
                 className="flex items-center gap-4 text-slate hover:text-navy transition-colors group"
               >
                 <div className="w-11 h-11 bg-ice rounded-xl flex items-center justify-center group-hover:bg-royal/10 transition-colors">
                   <Phone className="w-5 h-5 text-royal" />
                 </div>
-                <span className="text-sm">+1 (234) 567-890</span>
+                <span className="text-sm">{CONTACT_PHONE_DISPLAY}</span>
               </a>
               <div className="flex items-center gap-4 text-slate">
                 <div className="w-11 h-11 bg-ice rounded-xl flex items-center justify-center">
@@ -506,81 +532,135 @@ function Contact() {
             </div>
 
             <div className="mt-8 flex items-center gap-4">
-              <a
-                href="#"
-                className="w-10 h-10 bg-ice rounded-xl flex items-center justify-center hover:bg-royal/10 transition-colors"
-                aria-label={t('common.instagram')}
-              >
-                <svg className="w-4 h-4 text-royal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-              </a>
+              {SOCIAL_INSTAGRAM_URL ? (
+                <ExternalLink
+                  href={SOCIAL_INSTAGRAM_URL}
+                  className="w-10 h-10 bg-ice rounded-xl flex items-center justify-center hover:bg-royal/10 transition-colors"
+                  aria-label={t('common.instagram')}
+                >
+                  <svg className="w-4 h-4 text-royal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </ExternalLink>
+              ) : (
+                <span
+                  className="w-10 h-10 bg-ice rounded-xl flex items-center justify-center text-slate-light"
+                  aria-hidden="true"
+                >
+                  <svg className="w-4 h-4 text-royal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </span>
+              )}
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} noValidate className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-navy mb-2">
+              <label htmlFor="contact-name" className="block text-sm font-medium text-navy mb-2">
                 {t('contact.form.fullName')}
               </label>
               <input
+                id="contact-name"
+                name="name"
                 type="text"
+                autoComplete="name"
                 required
+                maxLength={CONTACT_LIMITS.name.max}
                 value={formData.name}
-                onChange={(e) =>
+                onChange={(e) => {
                   setFormData({ ...formData, name: e.target.value })
-                }
+                  if (errors.name) setErrors({ ...errors, name: undefined })
+                }}
+                aria-invalid={Boolean(errors.name)}
+                aria-describedby={errors.name ? 'contact-name-error' : undefined}
                 className="w-full bg-ice border border-slate-200 rounded-xl px-4 py-3 text-sm text-navy placeholder:text-slate-light focus:outline-none focus:ring-2 focus:ring-royal/30 focus:border-royal transition-all"
                 placeholder={t('contact.form.fullNamePlaceholder')}
               />
+              {fieldError('name') && (
+                <p id="contact-name-error" className="mt-1.5 text-xs text-red-600" role="alert">
+                  {fieldError('name')}
+                </p>
+              )}
             </div>
             <div>
-              <label className="block text-sm font-medium text-navy mb-2">
+              <label htmlFor="contact-business" className="block text-sm font-medium text-navy mb-2">
                 {t('contact.form.businessType')}
               </label>
               <input
+                id="contact-business"
+                name="business"
                 type="text"
+                autoComplete="organization"
                 required
+                maxLength={CONTACT_LIMITS.business.max}
                 value={formData.business}
-                onChange={(e) =>
+                onChange={(e) => {
                   setFormData({ ...formData, business: e.target.value })
-                }
+                  if (errors.business) setErrors({ ...errors, business: undefined })
+                }}
+                aria-invalid={Boolean(errors.business)}
+                aria-describedby={errors.business ? 'contact-business-error' : undefined}
                 className="w-full bg-ice border border-slate-200 rounded-xl px-4 py-3 text-sm text-navy placeholder:text-slate-light focus:outline-none focus:ring-2 focus:ring-royal/30 focus:border-royal transition-all"
                 placeholder={t('contact.form.businessTypePlaceholder')}
               />
+              {fieldError('business') && (
+                <p id="contact-business-error" className="mt-1.5 text-xs text-red-600" role="alert">
+                  {fieldError('business')}
+                </p>
+              )}
             </div>
             <div>
-              <label className="block text-sm font-medium text-navy mb-2">
+              <label htmlFor="contact-website-type" className="block text-sm font-medium text-navy mb-2">
                 {t('contact.form.websiteType')}
               </label>
               <select
+                id="contact-website-type"
+                name="websiteType"
                 required
                 value={formData.websiteType}
-                onChange={(e) =>
+                onChange={(e) => {
                   setFormData({ ...formData, websiteType: e.target.value })
-                }
+                  if (errors.websiteType) setErrors({ ...errors, websiteType: undefined })
+                }}
+                aria-invalid={Boolean(errors.websiteType)}
+                aria-describedby={errors.websiteType ? 'contact-website-type-error' : undefined}
                 className="w-full bg-ice border border-slate-200 rounded-xl px-4 py-3 text-sm text-navy focus:outline-none focus:ring-2 focus:ring-royal/30 focus:border-royal transition-all appearance-none"
               >
                 <option value="">{t('contact.form.websiteTypePlaceholder')}</option>
-                {websiteTypeOptions.map((option) => (
+                {WEBSITE_TYPE_OPTIONS.map((option) => (
                   <option key={option} value={option}>
                     {t(`contact.form.websiteTypes.${option}`)}
                   </option>
                 ))}
               </select>
+              {fieldError('websiteType') && (
+                <p id="contact-website-type-error" className="mt-1.5 text-xs text-red-600" role="alert">
+                  {fieldError('websiteType')}
+                </p>
+              )}
             </div>
             <div>
-              <label className="block text-sm font-medium text-navy mb-2">
+              <label htmlFor="contact-overview" className="block text-sm font-medium text-navy mb-2">
                 {t('contact.form.overview')}
               </label>
               <textarea
+                id="contact-overview"
+                name="overview"
                 required
                 rows={4}
+                maxLength={CONTACT_LIMITS.overview.max}
                 value={formData.overview}
-                onChange={(e) =>
+                onChange={(e) => {
                   setFormData({ ...formData, overview: e.target.value })
-                }
+                  if (errors.overview) setErrors({ ...errors, overview: undefined })
+                }}
+                aria-invalid={Boolean(errors.overview)}
+                aria-describedby={errors.overview ? 'contact-overview-error' : undefined}
                 className="w-full bg-ice border border-slate-200 rounded-xl px-4 py-3 text-sm text-navy placeholder:text-slate-light focus:outline-none focus:ring-2 focus:ring-royal/30 focus:border-royal transition-all resize-none"
                 placeholder={t('contact.form.overviewPlaceholder')}
               />
+              {fieldError('overview') && (
+                <p id="contact-overview-error" className="mt-1.5 text-xs text-red-600" role="alert">
+                  {fieldError('overview')}
+                </p>
+              )}
             </div>
             <button
               type="submit"
@@ -628,7 +708,7 @@ function Footer() {
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div id="top" className="min-h-screen bg-white">
       <Navbar />
       <Hero />
       <Services />
