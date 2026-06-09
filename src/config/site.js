@@ -7,3 +7,4 @@ export const WHATSAPP_DISPLAY = '+60 11-1218 2303'
 
 /** Set to a full HTTPS URL when the profile is live. */
 export const SOCIAL_INSTAGRAM_URL = 'https://www.instagram.com/devnote1/'
+export const SOCIAL_INSTAGRAM_DISPLAY = 'instagram.com/devnote1'

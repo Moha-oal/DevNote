@@ -4,6 +4,7 @@ import ExternalLink from './components/ExternalLink.jsx'
 import WhatsAppIcon from './components/WhatsAppIcon.jsx'
 import {
   CONTACT_EMAIL,
+  SOCIAL_INSTAGRAM_DISPLAY,
   SOCIAL_INSTAGRAM_URL,
   WHATSAPP_DISPLAY,
   WHATSAPP_URL,
@@ -370,8 +371,8 @@ function WhatsApp() {
 
 function Plans() {
   const { t } = useTranslation()
-  const essentialFeatures = t('plans.essential.features', { returnObjects: true })
-  const premiumFeatures = t('plans.premium.features', { returnObjects: true })
+  const basicFeatures = t('plans.basic.features', { returnObjects: true })
+  const proFeatures = t('plans.pro.features', { returnObjects: true })
 
   return (
     <section id="plans" className="py-20 md:py-28 bg-ice">
@@ -396,15 +397,15 @@ function Plans() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-navy">
-                  {t('plans.essential.title')}
+                  {t('plans.basic.title')}
                 </h3>
                 <span className="text-xs text-slate">
-                  {t('plans.essential.subtitle')}
+                  {t('plans.basic.price')}
                 </span>
               </div>
             </div>
             <ul className="space-y-3 mb-8">
-              {essentialFeatures.map((item) => (
+              {basicFeatures.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm">
                   <Check className="w-4 h-4 text-royal shrink-0 mt-0.5" />
                   <span className="text-slate">{item}</span>
@@ -415,14 +416,14 @@ function Plans() {
               href="#contact"
               className="block w-full text-center border-2 border-navy text-navy py-3 rounded-xl font-medium hover:bg-navy hover:text-white transition-all text-sm"
             >
-              {t('plans.essential.cta')}
+              {t('plans.basic.cta')}
             </a>
           </div>
 
           <div className="relative bg-navy rounded-2xl p-8 text-white shadow-2xl shadow-navy/20">
             <div className="absolute -top-3 end-8">
               <span className="bg-gradient-to-r from-royal to-cyan text-white text-xs font-bold px-4 py-1 rounded-full">
-                {t('plans.premium.badge')}
+                {t('plans.pro.badge')}
               </span>
             </div>
             <div className="flex items-center gap-3 mb-6">
@@ -430,14 +431,14 @@ function Plans() {
                 <HeartPulse className="w-5 h-5 text-cyan-light" />
               </div>
               <div>
-                <h3 className="text-lg font-semibold">{t('plans.premium.title')}</h3>
+                <h3 className="text-lg font-semibold">{t('plans.pro.title')}</h3>
                 <span className="text-xs text-slate-light">
-                  {t('plans.premium.subtitle')}
+                  {t('plans.pro.price')}
                 </span>
               </div>
             </div>
             <ul className="space-y-3 mb-8">
-              {premiumFeatures.map((item) => (
+              {proFeatures.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm">
                   <Check className="w-4 h-4 text-cyan-light shrink-0 mt-0.5" />
                   <span className="text-slate-light">{item}</span>
@@ -448,7 +449,7 @@ function Plans() {
               href="#contact"
               className="block w-full text-center bg-gradient-to-r from-royal to-cyan text-white py-3 rounded-xl font-medium hover:opacity-90 transition-all text-sm"
             >
-              {t('plans.premium.cta')}
+              {t('plans.pro.cta')}
             </a>
           </div>
         </div>
@@ -524,31 +525,24 @@ function Contact() {
                 </div>
                 <span className="text-sm">{WHATSAPP_DISPLAY}</span>
               </ExternalLink>
+              {SOCIAL_INSTAGRAM_URL && (
+                <ExternalLink
+                  href={SOCIAL_INSTAGRAM_URL}
+                  className="flex items-center gap-4 text-slate hover:text-navy transition-colors group"
+                  aria-label={t('common.instagram')}
+                >
+                  <div className="w-11 h-11 bg-ice rounded-xl flex items-center justify-center group-hover:bg-royal/10 transition-colors">
+                    <svg className="w-5 h-5 text-royal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  </div>
+                  <span className="text-sm">{SOCIAL_INSTAGRAM_DISPLAY}</span>
+                </ExternalLink>
+              )}
               <div className="flex items-center gap-4 text-slate">
                 <div className="w-11 h-11 bg-ice rounded-xl flex items-center justify-center">
                   <MapPin className="w-5 h-5 text-royal" />
                 </div>
                 <span className="text-sm">{t('contact.location')}</span>
               </div>
-            </div>
-
-            <div className="mt-8 flex items-center gap-4">
-              {SOCIAL_INSTAGRAM_URL ? (
-                <ExternalLink
-                  href={SOCIAL_INSTAGRAM_URL}
-                  className="w-10 h-10 bg-ice rounded-xl flex items-center justify-center hover:bg-royal/10 transition-colors"
-                  aria-label={t('common.instagram')}
-                >
-                  <svg className="w-4 h-4 text-royal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-                </ExternalLink>
-              ) : (
-                <span
-                  className="w-10 h-10 bg-ice rounded-xl flex items-center justify-center text-slate-light"
-                  aria-hidden="true"
-                >
-                  <svg className="w-4 h-4 text-royal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-                </span>
-              )}
             </div>
           </div>
 

@@ -79,29 +79,27 @@
     "eyebrow": "Post-Launch Support",
     "title": "Maintenance & Subscription Plans",
     "description": "Your website deserves ongoing care. Choose a plan that keeps your digital presence secure, fast, and up to date.",
-    "essential": {
-      "title": "Essential Care",
-      "subtitle": "Foundation-level protection",
+    "basic": {
+      "title": "Basic Care",
+      "price": "RM 150/month",
       "features": [
-        "Ultra-secure cloud hosting",
-        "Basic monthly backups",
-        "Core security updates & patches",
-        "SSL certificate management",
-        "Uptime monitoring"
+        "Fix any website bugs or errors",
+        "Monthly security scan",
+        "SSL & hosting monitoring",
+        "WhatsApp direct support",
+        "Response within 24 hours"
       ],
       "cta": "Get Started"
     },
-    "premium": {
-      "title": "Premium Growth",
-      "subtitle": "Complete peace of mind",
+    "pro": {
+      "title": "Pro Care",
+      "price": "RM 300/month",
       "badge": "Recommended",
       "features": [
-        "Everything in Essential Care",
-        "Regular automated full backups",
-        "Advanced malware monitoring",
-        "Dedicated priority support hours",
-        "Minor content updates included",
-        "Monthly performance & security audits"
+        "Everything in Basic Care",
+        "Up to 3 website edits or additions per month (text, images, prices, sections)",
+        "Monthly performance & security report (PDF)",
+        "Priority WhatsApp support — response within 6 hours"
       ],
       "cta": "Get Started"
     }
@@ -114,7 +112,7 @@
     "whatsapp": "Chat on WhatsApp",
     "form": {
       "fullName": "Full Name",
-      "fullNamePlaceholder": "John Doe",
+      "fullNamePlaceholder": "اسمك",
       "businessType": "Business Type",
       "businessTypePlaceholder": "E-Commerce, Agency, SaaS...",
       "websiteType": "Required Website Type",
