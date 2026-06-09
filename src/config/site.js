@@ -1,7 +1,9 @@
 /** Public contact details — not secrets; safe to ship in client bundle. */
 export const CONTACT_EMAIL = 'hello@devnote.agency'
-export const CONTACT_PHONE = '+1234567890'
-export const CONTACT_PHONE_DISPLAY = '+1 (234) 567-890'
+
+export const WHATSAPP_NUMBER = '601112182303'
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`
+export const WHATSAPP_DISPLAY = '+60 11-1218 2303'
 
 /** Set to a full HTTPS URL when the profile is live. */
 export const SOCIAL_INSTAGRAM_URL = null

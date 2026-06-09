@@ -111,6 +111,7 @@
     "title": "Start Your Project",
     "description": "Tell us about your vision. We'll get back to you within 24 hours with a tailored proposal — no obligations, no pressure.",
     "location": "Remote-first, worldwide",
+    "whatsapp": "Chat on WhatsApp",
     "form": {
       "fullName": "Full Name",
       "fullNamePlaceholder": "John Doe",

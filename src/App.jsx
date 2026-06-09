@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ExternalLink from './components/ExternalLink.jsx'
+import WhatsAppIcon from './components/WhatsAppIcon.jsx'
 import {
   CONTACT_EMAIL,
-  CONTACT_PHONE,
-  CONTACT_PHONE_DISPLAY,
   SOCIAL_INSTAGRAM_URL,
+  WHATSAPP_DISPLAY,
+  WHATSAPP_URL,
 } from './config/site.js'
 import {
   CONTACT_LIMITS,
@@ -27,7 +28,6 @@ import {
   Send,
 
   Mail,
-  Phone,
   MapPin,
   ChevronRight,
   Menu,
@@ -514,15 +514,16 @@ function Contact() {
                 </div>
                 <span className="text-sm">{CONTACT_EMAIL}</span>
               </a>
-              <a
-                href={`tel:${CONTACT_PHONE}`}
+              <ExternalLink
+                href={WHATSAPP_URL}
                 className="flex items-center gap-4 text-slate hover:text-navy transition-colors group"
+                aria-label={t('contact.whatsapp')}
               >
-                <div className="w-11 h-11 bg-ice rounded-xl flex items-center justify-center group-hover:bg-royal/10 transition-colors">
-                  <Phone className="w-5 h-5 text-royal" />
+                <div className="w-11 h-11 bg-ice rounded-xl flex items-center justify-center group-hover:bg-emerald-50 transition-colors">
+                  <WhatsAppIcon className="w-5 h-5 text-emerald-600" />
                 </div>
-                <span className="text-sm">{CONTACT_PHONE_DISPLAY}</span>
-              </a>
+                <span className="text-sm">{WHATSAPP_DISPLAY}</span>
+              </ExternalLink>
               <div className="flex items-center gap-4 text-slate">
                 <div className="w-11 h-11 bg-ice rounded-xl flex items-center justify-center">
                   <MapPin className="w-5 h-5 text-royal" />
