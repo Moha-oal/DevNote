@@ -58,7 +58,7 @@ function LanguageToggle() {
         }`}
         aria-pressed={currentLang === 'ar'}
       >
-        AR
+        ع
       </button>
     </div>
   )
